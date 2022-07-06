@@ -18,7 +18,7 @@ body {
 .header {
   background-color: var(--primary-background-color);
   color: var(--primary-text-color);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 6px var(--shadow-color);
   z-index: 1;
   padding: 0 8px;
 }
@@ -49,6 +49,34 @@ body {
 .main {
   background-color: var(--secondary-background-color);
   color: var(--primary-text-color);
+  text-align: center;
+}
+
+.addBook button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  margin: 40px auto;
+  background-color: var(--secondary-background-color);
+  color: var(--primary-text-color);
+  border: none;
+  padding: 8px 20px;
+}
+
+.addBook button:hover {
+  border-radius: 8px;
+  background-color: var(--button-hover-color);
+  cursor: pointer;
+}
+
+.addBook p {
+  font-size: 2rem;
+}
+
+.addBook img {
+  height: 1.8rem;
+  filter: var(--color-change-filter);
 }
 
 .footer {

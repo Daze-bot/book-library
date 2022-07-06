@@ -3,4 +3,6 @@
   --secondary-background-color: #e2e8f0;
   --primary-text-color: black;
   --color-change-filter: none;
+  --button-hover-color: #d0d7df;
+  --shadow-color: rgba(0, 0, 0, 0.2);
 }
