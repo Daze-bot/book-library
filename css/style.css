@@ -7,3 +7,55 @@
   font-size: 16px;
   list-style: none;
 }
+
+body {
+  min-height: 100vh;
+  display: grid;
+  grid-template: 100px 1fr 40px / 1fr;
+  overflow: auto;
+}
+
+.header {
+  background-color: var(--primary-background-color);
+  color: var(--primary-text-color);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  padding: 0 8px;
+}
+
+.headerContent {
+  height: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.headerContent .title {
+  font-size: 3rem;
+}
+
+.headerContent img {
+  height: 2rem;
+  filter: var(--color-change-filter);
+}
+
+.headerContent img:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.main {
+  background-color: var(--secondary-background-color);
+  color: var(--primary-text-color);
+}
+
+.footer {
+  background-color: var(--secondary-background-color);
+  color: var(--primary-text-color);
+}
+
+.hidden {
+  display: none;
+}

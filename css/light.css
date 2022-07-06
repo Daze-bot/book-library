@@ -1,6 +1,6 @@
 :root {
-  --header-background-color:
-  --main-background-color:
-  --primary-text-color:
+  --primary-background-color: white;
+  --secondary-background-color: #e2e8f0;
+  --primary-text-color: black;
   --color-change-filter: none;
 }
