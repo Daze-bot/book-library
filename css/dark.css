@@ -1,0 +1,6 @@
+:root {
+  --header-background-color:
+  --main-background-color:
+  --primary-text-color:
+  --color-change-filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7454%) hue-rotate(268deg) brightness(118%) contrast(101%);
+}
