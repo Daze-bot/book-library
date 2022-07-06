@@ -82,6 +82,9 @@ body {
 .footer {
   background-color: var(--secondary-background-color);
   color: var(--primary-text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hidden {
