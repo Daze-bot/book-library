@@ -1,8 +1,8 @@
 :root {
   --primary-background-color: white;
-  --secondary-background-color: #e2e8f0;
+  --secondary-background-color: #f0eae2;
   --primary-text-color: black;
   --color-change-filter: none;
-  --button-hover-color: #d0d7df;
+  --button-hover-color: #dad3cb;
   --shadow-color: rgba(0, 0, 0, 0.2);
 }
