@@ -70,6 +70,10 @@ body {
   cursor: pointer;
 }
 
+.addBook button:active {
+  transform: translateY(2px);
+}
+
 .addBook p {
   font-size: 2rem;
 }
@@ -77,6 +81,20 @@ body {
 .addBook img {
   height: 1.8rem;
   filter: var(--color-change-filter);
+}
+
+.bookCards {
+  margin: 0 40px 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-rows: 250px;
+  gap: 30px;
+}
+
+.bookCard {
+  background-color: var(--primary-background-color);
+  border-radius: 8px;
+  padding: 20px;
 }
 
 .footer {
