@@ -19,3 +19,17 @@ function setTheme(themeName) {
 }
 
 setTheme(currentTheme);
+
+let toTopBtn = document.querySelector('.toTop');
+
+function showToTop() {
+  if (window.scrollY >= 210) {
+    toTopBtn.classList.remove('hidden');
+  } else {
+    toTopBtn.classList.add('hidden');
+  }
+}
+
+window.addEventListener('scroll', showToTop);
+
+toTopBtn.addEventListener('click', () => {window.scrollTo(0, 0)});
