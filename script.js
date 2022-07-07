@@ -7,12 +7,15 @@ let toTopBtn = document.querySelector('.toTop');
 let newBookBtn = document.querySelector('.addBook');
 let formBackground = document.querySelector('.newBookContainer');
 let newBookForm = document.querySelector('.newBookForm');
+let resetFormBtn = document.querySelector('.resetForm');
+let formCloseBtn = document.querySelector('.formClose');
 
 darkThemeBtn.addEventListener('click', () => setTheme("dark"));
 lightThemeBtn.addEventListener('click', () => setTheme("light"));
 window.addEventListener('scroll', showToTop);
 toTopBtn.addEventListener('click', () => {window.scrollTo(0, 0)});
 newBookBtn.addEventListener('click', showNewBookForm);
+formCloseBtn.addEventListener('click', closeForm);
 
 function showNewBookForm() {
   formBackground.classList.remove('hidden');
@@ -155,10 +158,15 @@ function showToTop() {
 }
 
 formBackground.addEventListener('click', function(e) {
-  console.log(e.target);
   if (newBookForm.contains(e.target)) {
     return;
   } else {
     formBackground.classList.add('hidden');
+    resetFormBtn.click();
   }
 })
+
+function closeForm() {
+  formBackground.classList.add('hidden');
+  resetFormBtn.click();
+}

@@ -209,13 +209,14 @@ body {
 .newBookForm {
   background-color: var(--secondary-background-color);
   color: var(--primary-text-color);
-  padding: 40px;
+  padding: 40px 80px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   gap: 30px;
   border-radius: 8px;
+  position: relative;
 }
 
 .newBookForm > p {
