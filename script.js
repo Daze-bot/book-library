@@ -1,16 +1,22 @@
+let myLibrary = [];
 let darkThemeBtn = document.querySelector('.darkTheme');
 let lightThemeBtn = document.querySelector('.lightTheme');
 let themeSelectLink = document.querySelector('#themeSelect');
 let currentTheme = localStorage.getItem("theme") || "light";
 let toTopBtn = document.querySelector('.toTop');
 let newBookBtn = document.querySelector('.addBook');
-let myLibrary = [];
+let formBackground = document.querySelector('.newBookContainer');
+let newBookForm = document.querySelector('.newBookForm');
 
 darkThemeBtn.addEventListener('click', () => setTheme("dark"));
 lightThemeBtn.addEventListener('click', () => setTheme("light"));
 window.addEventListener('scroll', showToTop);
 toTopBtn.addEventListener('click', () => {window.scrollTo(0, 0)});
-newBookBtn.addEventListener('click', addNewBook);
+newBookBtn.addEventListener('click', showNewBookForm);
+
+function showNewBookForm() {
+  formBackground.classList.remove('hidden');
+}
 
 function addNewBook() {
   let titleInput = prompt("Title?");
@@ -147,3 +153,12 @@ function showToTop() {
     toTopBtn.classList.add('hidden');
   }
 }
+
+formBackground.addEventListener('click', function(e) {
+  console.log(e.target);
+  if (newBookForm.contains(e.target)) {
+    return;
+  } else {
+    formBackground.classList.add('hidden');
+  }
+})

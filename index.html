@@ -28,20 +28,27 @@
       <img src="./imgs/up-arrow.svg" alt="Scroll to Top">
     </button>
   </main>
-  <div class="newBookContainer">
+  <div class="newBookContainer hidden">
     <form action="" class="newBookForm">
-        <div class="input">
-          <label for="bookTitleInput">TITLE</label>
-          <input type="text" name="bookTitleInput" id="bookTitleInput" required>
-        </div>
-        <div class="input">
-          <label for="bookAuthorInput">AUTHOR</label>
-          <input type="text" name="bookAuthorInput" id="bookAuthorInput" required>
-        </div>
-        <div class="input">
-          <label for="bookPagesInput">No. of Pages</label>
-          <input type="number" name="bookPagesInput" id="bookPagesInput" required>
-        </div>
+      <p>Add New Book</p>
+      <div class="input entry">
+        <label for="bookTitleInput">TITLE</label>
+        <input type="text" name="bookTitleInput" id="bookTitleInput" required>
+      </div>
+      <div class="input entry">
+        <label for="bookAuthorInput">AUTHOR</label>
+        <input type="text" name="bookAuthorInput" id="bookAuthorInput" required>
+      </div>
+      <div class="input entry">
+        <label for="bookPagesInput"># OF PAGES</label>
+        <input type="number" name="bookPagesInput" id="bookPagesInput" required>
+      </div>
+      <div class="input check">
+        <label for="bookReadInput">"I have read this book"</label>
+        <input type="checkbox" name="bookReadInput" id="bookReadInput">
+      </div>
+      <button class="submitNewBook">Add</button>
+      <button class="resetForm hidden" type="reset"></button>
     </form>
   </div>
   <footer class="footer">
