@@ -4,7 +4,6 @@ let themeSelectLink = document.querySelector('#themeSelect');
 let currentTheme = localStorage.getItem("theme") || "light";
 let toTopBtn = document.querySelector('.toTop');
 let readStatusBtns = document.querySelectorAll('.readCheck');
-let bookCardsContainer = document.querySelector('.bookCardsContainer');
 let newBookBtn = document.querySelector('.addBook');
 
 let myLibrary = [];
@@ -42,7 +41,13 @@ function Book(title, author, pages, read) {
 
 function addToLibrary(book) {
   myLibrary.push(book);
-  console.log(myLibrary);
+  loopThroughLibrary(myLibrary);
+}
+
+function loopThroughLibrary(array) {
+  for (let item of array) {
+    createCard(item.title, item.author, item.pages, item.read);
+  }
 }
 
 function markRead() {
@@ -73,6 +78,76 @@ function setTheme(themeName) {
     lightThemeBtn.classList.add('hidden');
     darkThemeBtn.classList.remove('hidden');
   }
+}
+
+function createCard(title, author, pages, read) {
+  let bookCardsContainer = document.querySelector('.bookCardsContainer');
+
+  let bookCard = document.createElement('div')
+  bookCard.classList.add('bookCard');
+
+  let pTitle = document.createElement('p');
+  pTitle.classList.add('bookTitle');
+  let titleSpan = document.createElement('span');
+  titleSpan.classList.add('title');
+  let titleSpanText = document.createTextNode("Title: ");
+  let titleText = document.createTextNode(`${title}`);
+
+  let pAuthor = document.createElement('p');
+  pAuthor.classList.add('bookAuthor');
+  let authorSpan = document.createElement('span');
+  authorSpan.classList.add('author');
+  let authorSpanText = document.createTextNode("Author: ");
+  let authorText = document.createTextNode(`${author}`);
+
+  let pPages = document.createElement('p');
+  pPages.classList.add('bookPages');
+  let pagesSpan = document.createElement('span');
+  pagesSpan.classList.add('pages');
+  let pagesSpanText = document.createTextNode("# Pages: ");
+  let pagesText = document.createTextNode(`${pages}`);
+
+  let readStatus = document.createElement('div');
+  readStatus.classList.add('bookReadStatus');
+  let pRead = document.createElement('p');
+  let pReadText = document.createTextNode("Mark as read:");
+  let readBtn = document.createElement('button');
+  readBtn.classList.add('readCheck');
+  let checkMarkImg = document.createElement('img');
+  checkMarkImg.classList.add('checkMark');
+  checkMarkImg.setAttribute('src', './imgs/green-check.svg');
+  checkMarkImg.setAttribute('alt', "Check Mark");
+
+  let closeBtn = document.createElement('img');
+  closeBtn.classList.add('closeButton');
+  closeBtn.setAttribute('src', './imgs/close.svg');
+  closeBtn.setAttribute('alt', "Close");
+
+  if (read === true) {
+    bookCard.classList.add('readBackground');
+  } else if (read === false) {
+    checkMarkImg.classList.add('hidden');
+  }
+
+  bookCardsContainer.appendChild(bookCard);
+    bookCard.appendChild(pTitle);
+      pTitle.appendChild(titleSpan);
+        titleSpan.appendChild(titleSpanText);
+      pTitle.appendChild(titleText);
+    bookCard.appendChild(pAuthor);
+      pAuthor.appendChild(authorSpan);
+        authorSpan.appendChild(authorSpanText);
+      pAuthor.appendChild(authorText);
+    bookCard.appendChild(pPages);
+      pPages.appendChild(pagesSpan);
+        pagesSpan.appendChild(pagesSpanText);
+      pPages.appendChild(pagesText);
+    bookCard.appendChild(readStatus);
+      readStatus.appendChild(pRead);
+        pRead.appendChild(pReadText);
+      readStatus.appendChild(readBtn);
+        readBtn.appendChild(checkMarkImg);
+    bookCard.appendChild(closeBtn);
 }
 
 setTheme(currentTheme);
