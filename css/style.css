@@ -13,6 +13,7 @@ body {
   display: grid;
   grid-template: 100px 1fr 40px / 1fr;
   overflow: auto;
+  position: relative;
 }
 
 .header {
@@ -192,6 +193,32 @@ body {
 
 .toTop img {
   filter: var(--to-top-button-filter);
+}
+
+.newBookContainer {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 3;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newBookForm {
+  background-color: white;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: left;
+}
+
+.input input,
+.input label {
+  display: block;
+  width: 100%;
 }
 
 .footer {
