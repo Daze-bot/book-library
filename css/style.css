@@ -52,7 +52,7 @@ body {
   text-align: center;
 }
 
-.addBook button {
+.addBook {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,13 +64,13 @@ body {
   padding: 8px 20px;
 }
 
-.addBook button:hover {
+.addBook:hover {
   border-radius: 8px;
   background-color: var(--button-hover-color);
   cursor: pointer;
 }
 
-.addBook button:active {
+.addBook:active {
   transform: translateY(2px);
 }
 

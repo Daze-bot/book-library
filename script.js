@@ -4,6 +4,10 @@ let themeSelectLink = document.querySelector('#themeSelect');
 let currentTheme = localStorage.getItem("theme") || "light";
 let toTopBtn = document.querySelector('.toTop');
 let readStatusBtns = document.querySelectorAll('.readCheck');
+let bookCardsContainer = document.querySelector('.bookCardsContainer');
+let newBookBtn = document.querySelector('.addBook');
+
+let myLibrary = [];
 
 darkThemeBtn.addEventListener('click', () => setTheme("dark"));
 lightThemeBtn.addEventListener('click', () => setTheme("light"));
@@ -11,7 +15,35 @@ lightThemeBtn.addEventListener('click', () => setTheme("light"));
 window.addEventListener('scroll', showToTop);
 toTopBtn.addEventListener('click', () => {window.scrollTo(0, 0)});
 
-readStatusBtns.forEach(readStatusBtn => readStatusBtn.addEventListener('click', markRead))
+readStatusBtns.forEach(readStatusBtn => readStatusBtn.addEventListener('click', markRead));
+
+newBookBtn.addEventListener('click', addNewBook);
+
+function addNewBook() {
+  let titleInput = prompt("Title?");
+  let authorInput = prompt("Author?");
+  let pagesInput = prompt("Number of Pages?");
+  let readInput = prompt("Have you read this book?");
+  if (readInput === "yes") {
+    readInput = true;
+  } else {
+    readInput = false;
+  }
+  let newBook = new Book(titleInput, authorInput, pagesInput, readInput);
+  addToLibrary(newBook);
+}
+
+function Book(title, author, pages, read) {
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.read = read;
+}
+
+function addToLibrary(book) {
+  myLibrary.push(book);
+  console.log(myLibrary);
+}
 
 function markRead() {
   if (this.children[0].classList.contains('hidden')) {
