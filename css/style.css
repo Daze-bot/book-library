@@ -146,8 +146,8 @@ body {
   align-items: center;
   background-color: var(--primary-background-color);
   border: 1px solid var(--primary-text-color);
-  height: 1.2rem;
-  width: 1.2rem;
+  height: 1.3rem;
+  width: 1.3rem;
 }
 
 .readCheck img {
@@ -156,6 +156,7 @@ body {
 
 .readCheck:hover {
   cursor: pointer;
+  box-shadow: 0 2px 10px var(--shadow-color);
 }
 
 .closeButton {
