@@ -161,8 +161,7 @@ formBackground.addEventListener('click', function(e) {
   if (newBookForm.contains(e.target)) {
     return;
   } else {
-    formBackground.classList.add('hidden');
-    resetFormBtn.click();
+    closeForm();
   }
 })
 
