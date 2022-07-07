@@ -86,13 +86,13 @@ body {
 .bookCardsContainer {
   margin: 0 50px 40px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   grid-auto-rows: 250px;
   gap: 40px;
 }
 
 .bookCard {
-  background-color: var(--primary-background-color);
+  background: var(--primary-background-color);
   border-radius: 12px;
   padding: 40px 20px;
   box-shadow: 0 2px 6px var(--shadow-color);
@@ -104,21 +104,68 @@ body {
   position: relative;
 }
 
+.readBackground {
+  background: linear-gradient(to right, green, green 30px, var(--primary-background-color) 30px);
+}
+
 .bookCard:hover {
-  cursor: pointer;
-  transform: scale(1.025);
-  box-shadow: 0 2px 15px var(--shadow-color);
+  box-shadow: 0 4px 20px var(--shadow-color);
 }
 
 .bookCard p {
   max-width: 100%;
   word-wrap: break-word;
+  font-size: 1.2rem;
+}
+
+.bookCard p span {
+  font-size: 1.2rem;
+}
+
+.bookTitle {
+  font-style: italic;
+}
+
+.title,
+.author,
+.pages {
+  font-weight: 700;
+  font-style: normal;
+}
+
+.bookReadStatus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.readCheck {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary-background-color);
+  border: 1px solid var(--primary-text-color);
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+.readCheck img {
+  height: 1.2rem;
+}
+
+.readCheck:hover {
+  cursor: pointer;
 }
 
 .closeButton {
   position: absolute;
   right: 4px;
   top: 4px;
+}
+
+.closeButton:hover {
+  cursor: pointer;
 }
 
 .toTop {
