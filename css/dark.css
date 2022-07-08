@@ -6,4 +6,5 @@
   --button-hover-color: #585b61;
   --shadow-color: rgba(0, 0, 0, 0.4);
   --to-top-button-filter: none;
+  --basic-shadow: 0 2px 6px var(--shadow-color);
 }
