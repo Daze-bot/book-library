@@ -261,8 +261,29 @@ body {
 }
 
 .check input {
+  -webkit-appearance: none;
+  appearance: none;
   height: 1.5rem;
   width: 1.5rem;
+  position: relative;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
+}
+
+.check input::after {
+  background-image: url(../imgs/green-check.svg);
+  background-size: 22px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 22px;
+  width: 22px;
+  content: "";
+  visibility: hidden;
+}
+
+.check input:checked:after {
+  visibility: visible;
 }
 
 .check input:hover {
