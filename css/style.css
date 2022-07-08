@@ -37,6 +37,43 @@ body {
   font-size: 3rem;
 }
 
+.search {
+  padding: 10px 48px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+  flex-grow: 1;
+}
+
+.search input {
+  flex-grow: 1;
+  padding: 6px;
+  padding-left: 12px;
+  background-color: var(--secondary-background-color);
+  border: none;
+  border-radius: 20px;
+  font-size: 1.2rem;
+}
+
+.search input:hover {
+  background-color: var(--search-hover);
+}
+
+.search input:focus {
+  background-color: white;
+  outline: none;
+  border: 2px solid var(--primary-text-color);
+  box-shadow: 0 0 8px 4px var(--shadow-color);
+}
+
+.search label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: var(--color-change-filter);
+}
+
 .headerContent img {
   height: 2rem;
   filter: var(--color-change-filter);
