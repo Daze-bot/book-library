@@ -1,5 +1,5 @@
 let myLibrary = JSON.parse(localStorage.getItem("library") || "[]");
-let uniqueID = 0;
+let uniqueID = +localStorage.getItem("uniqueID") || 0;
 let darkThemeBtn = document.querySelector('.darkTheme');
 let lightThemeBtn = document.querySelector('.lightTheme');
 let themeSelectLink = document.querySelector('#themeSelect');
@@ -47,6 +47,7 @@ function Book(title, author, pages, read, id) {
 function addToLibrary(book) {
   myLibrary.push(book);
   saveLibrary();
+  saveUniqueID();
   createCard(book.title, book.author, book.pages, book.read, book.id);
 }
 
@@ -156,12 +157,13 @@ function markRead() {
   }
 }
 
-
 function removeCard() {
   if (confirm("Are you sure you want to remove this book?")) {
     this.parentElement.remove();
-    let bookID = this.parentElement.dataset.id;
-    console.log(bookID);
+    let bookID = +this.parentElement.dataset.id;
+    let index = myLibrary.findIndex(x => x.id === bookID);
+    myLibrary.splice(index, 1);
+    saveLibrary();
   } else {
     return;
   }
@@ -203,4 +205,8 @@ function closeForm() {
 
 function saveLibrary() {
   window.localStorage.setItem("library", JSON.stringify(myLibrary));
+}
+
+function saveUniqueID() {
+  window.localStorage.setItem("uniqueID", uniqueID);
 }
