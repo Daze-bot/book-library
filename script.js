@@ -1,4 +1,4 @@
-let myLibrary = [];
+let myLibrary = JSON.parse(localStorage.getItem("library") || "[]");
 let darkThemeBtn = document.querySelector('.darkTheme');
 let lightThemeBtn = document.querySelector('.lightTheme');
 let themeSelectLink = document.querySelector('#themeSelect');
@@ -11,6 +11,7 @@ let resetFormBtn = document.querySelector('.resetForm');
 let formCloseBtn = document.querySelector('.formClose');
 let formSubmitBtn = document.querySelector('.submitNewBook');
 
+window.addEventListener('load', () => loadLibrary(myLibrary));
 darkThemeBtn.addEventListener('click', () => setTheme("dark"));
 lightThemeBtn.addEventListener('click', () => setTheme("light"));
 window.addEventListener('scroll', showToTop);
@@ -42,10 +43,19 @@ function Book(title, author, pages, read) {
 
 function addToLibrary(book) {
   myLibrary.push(book);
+  window.localStorage.setItem("library", JSON.stringify(myLibrary));
   createCard(book.title, book.author, book.pages, book.read);
 }
 
-function loopThroughLibrary(array) {
+function clearAndLoopThroughLibrary(array) {
+  let bookCardsContainer = document.querySelector('.bookCardsContainer');
+  while (bookCardsContainer.hasChildNodes()) {
+    bookCardsContainer.removeChild(bookCardsContainer.lastChild);
+  }
+  loadLibrary(array);
+}
+
+function loadLibrary(array) {
   for (let item of array) {
     createCard(item.title, item.author, item.pages, item.read);
   }
