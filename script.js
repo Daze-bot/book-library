@@ -9,6 +9,7 @@ let formBackground = document.querySelector('.newBookContainer');
 let newBookForm = document.querySelector('.newBookForm');
 let resetFormBtn = document.querySelector('.resetForm');
 let formCloseBtn = document.querySelector('.formClose');
+let formSubmitBtn = document.querySelector('.submitNewBook');
 
 darkThemeBtn.addEventListener('click', () => setTheme("dark"));
 lightThemeBtn.addEventListener('click', () => setTheme("light"));
@@ -16,21 +17,18 @@ window.addEventListener('scroll', showToTop);
 toTopBtn.addEventListener('click', () => {window.scrollTo(0, 0)});
 newBookBtn.addEventListener('click', showNewBookForm);
 formCloseBtn.addEventListener('click', closeForm);
+formSubmitBtn.addEventListener('click', addNewBook);
 
 function showNewBookForm() {
   formBackground.classList.remove('hidden');
 }
 
 function addNewBook() {
-  let titleInput = prompt("Title?");
-  let authorInput = prompt("Author?");
-  let pagesInput = prompt("Number of Pages?");
-  let readInput = prompt("Have you read this book?");
-  if (readInput === "yes") {
-    readInput = true;
-  } else {
-    readInput = false;
-  }
+  let titleInput = document.querySelector('#bookTitleInput').value;
+  let authorInput = document.querySelector('#bookAuthorInput').value;
+  let pagesInput = document.querySelector('#bookPagesInput').value;
+  let readInput = document.querySelector('#bookReadInput').value;
+
   let newBook = new Book(titleInput, authorInput, pagesInput, readInput);
   addToLibrary(newBook);
 }
@@ -59,8 +57,10 @@ function createCard(title, author, pages, read) {
   let bookCard = document.createElement('div')
   bookCard.classList.add('bookCard');
 
-  let pTitle = document.createElement('p');
+  let pTitle = document.createElement('a');
   pTitle.classList.add('bookTitle');
+  pTitle.setAttribute('href', `https://www.thriftbooks.com/browse/?b.search=${title}`);
+  pTitle.setAttribute('target', "_blank");
   let titleSpan = document.createElement('span');
   titleSpan.classList.add('title');
   let titleSpanText = document.createTextNode("Title: ");
@@ -96,9 +96,9 @@ function createCard(title, author, pages, read) {
   closeBtn.setAttribute('src', './imgs/close.svg');
   closeBtn.setAttribute('alt', "Close");
 
-  if (read === true) {
+  if (read === "on") {
     bookCard.classList.add('readBackground');
-  } else if (read === false) {
+  } else if (read === "off") {
     checkMarkImg.classList.add('hidden');
   }
 
@@ -124,6 +124,8 @@ function createCard(title, author, pages, read) {
 
     let readStatusBtns = document.querySelectorAll('.readCheck');
     readStatusBtns.forEach(readStatusBtn => readStatusBtn.addEventListener('click', markRead));
+
+    closeForm();
 }
 
 function markRead() {

@@ -113,18 +113,28 @@ body {
   box-shadow: 0 4px 20px var(--shadow-color);
 }
 
-.bookCard p {
+.bookCard p,
+.bookCard a {
   max-width: 100%;
   word-wrap: break-word;
   font-size: 1.2rem;
 }
 
-.bookCard p span {
+.bookCard p span,
+.bookCard a span {
   font-size: 1.2rem;
 }
 
-.bookTitle {
+.bookTitle:link,
+.bookTitle:visited,
+.bookTitle:active {
   font-style: italic;
+  text-decoration: none;
+  color: var(--primary-text-color);
+}
+
+.bookTitle:hover {
+  cursor: pointer;
 }
 
 .title,
@@ -267,7 +277,7 @@ body {
   width: 1.5rem;
   position: relative;
   background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 4px;
 }
 
@@ -288,11 +298,19 @@ body {
 
 .check input:hover {
   cursor: pointer;
+  box-shadow: 0 0 8px var(--shadow-color);
+}
+
+.check input:focus {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 8px var(--dark-shadow-color);
+  outline: none;
 }
 
 .submitNewBook {
   padding: 15px 50px;
   font-size: 1.7rem;
+  font-weight: 700;
   background-color: var(--primary-background-color);
   border: none;
   border-radius: 12px;
