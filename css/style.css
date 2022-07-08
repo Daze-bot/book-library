@@ -234,6 +234,21 @@ body {
   margin-bottom: 4px;
 }
 
+.entry input {
+  outline: none;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+}
+
+.entry input:hover {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.entry input:focus {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+}
+
 .check {
   display: flex;
   justify-content: center;

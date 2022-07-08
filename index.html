@@ -29,7 +29,7 @@
     </button>
   </main>
   <div class="newBookContainer hidden">
-    <form action="" class="newBookForm">
+    <form action="" class="newBookForm" autocomplete="off">
       <img class="closeButton formClose" src="./imgs/close.svg" alt="Close">
       <p>Add New Book</p>
       <div class="input entry">
@@ -42,7 +42,7 @@
       </div>
       <div class="input entry">
         <label for="bookPagesInput"># OF PAGES</label>
-        <input type="number" name="bookPagesInput" id="bookPagesInput" required>
+        <input type="number" name="bookPagesInput" id="bookPagesInput" placeholder="Enter 0 if N/A" required>
       </div>
       <div class="input check">
         <label for="bookReadInput">"I have read this book"</label>
