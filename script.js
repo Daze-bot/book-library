@@ -103,6 +103,7 @@ function createCard(title, author, pages, read) {
 
   let closeBtn = document.createElement('img');
   closeBtn.classList.add('closeButton');
+  closeBtn.classList.add('cardClose');
   closeBtn.setAttribute('src', './imgs/close.svg');
   closeBtn.setAttribute('alt', "Close");
 
@@ -135,6 +136,9 @@ function createCard(title, author, pages, read) {
     let readStatusBtns = document.querySelectorAll('.readCheck');
     readStatusBtns.forEach(readStatusBtn => readStatusBtn.addEventListener('click', markRead));
 
+    let cardRemoveBtns = document.querySelectorAll('.cardClose');
+    cardRemoveBtns.forEach(cardRemoveBtn => cardRemoveBtn.addEventListener('click', removeCard));
+
     closeForm();
 }
 
@@ -145,6 +149,15 @@ function markRead() {
   } else {
     this.children[0].classList.add('hidden');
     this.parentElement.parentElement.classList.remove('readBackground');
+  }
+}
+
+
+function removeCard() {
+  if (confirm("Are you sure you want to remove this book?")) {
+    this.parentElement.remove();
+  } else {
+    return;
   }
 }
 
