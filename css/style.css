@@ -64,7 +64,7 @@ body {
   background-color: white;
   outline: none;
   border: 2px solid var(--primary-text-color);
-  box-shadow: 0 0 8px 4px var(--shadow-color);
+  box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.2);
 }
 
 .search label {
