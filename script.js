@@ -29,7 +29,7 @@ function addNewBook() {
   let titleInput = document.querySelector('#bookTitleInput').value;
   let authorInput = document.querySelector('#bookAuthorInput').value;
   let pagesInput = document.querySelector('#bookPagesInput').value;
-  let readInput = document.querySelector('#bookReadInput').value;
+  let readInput = document.querySelector('#bookReadInput').checked.toString();
   uniqueID += 1;
 
   let newBook = new Book(titleInput, authorInput, pagesInput, readInput, uniqueID);
@@ -112,9 +112,9 @@ function createCard(title, author, pages, read, id) {
   closeBtn.setAttribute('src', './imgs/close.svg');
   closeBtn.setAttribute('alt', "Close");
 
-  if (read === "on") {
+  if (read === "true") {
     bookCard.classList.add('readBackground');
-  } else if (read === "off") {
+  } else if (read === "false") {
     checkMarkImg.classList.add('hidden');
   }
 
@@ -148,13 +148,18 @@ function createCard(title, author, pages, read, id) {
 }
 
 function markRead() {
+  let bookID = +this.parentElement.parentElement.dataset.id;
+  let index = myLibrary.findIndex(x => x.id === bookID);
   if (this.children[0].classList.contains('hidden')) {
     this.children[0].classList.remove('hidden');
     this.parentElement.parentElement.classList.add('readBackground');
+    myLibrary[index].read = "true";
   } else {
     this.children[0].classList.add('hidden');
     this.parentElement.parentElement.classList.remove('readBackground');
+    myLibrary[index].read = "false";
   }
+  saveLibrary();
 }
 
 function removeCard() {
