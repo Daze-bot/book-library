@@ -1,4 +1,5 @@
 let myLibrary = JSON.parse(localStorage.getItem("library") || "[]");
+let uniqueID = 0;
 let darkThemeBtn = document.querySelector('.darkTheme');
 let lightThemeBtn = document.querySelector('.lightTheme');
 let themeSelectLink = document.querySelector('#themeSelect');
@@ -29,22 +30,24 @@ function addNewBook() {
   let authorInput = document.querySelector('#bookAuthorInput').value;
   let pagesInput = document.querySelector('#bookPagesInput').value;
   let readInput = document.querySelector('#bookReadInput').value;
+  uniqueID += 1;
 
-  let newBook = new Book(titleInput, authorInput, pagesInput, readInput);
+  let newBook = new Book(titleInput, authorInput, pagesInput, readInput, uniqueID);
   addToLibrary(newBook);
 }
 
-function Book(title, author, pages, read) {
+function Book(title, author, pages, read, id) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.read = read;
+  this.id = id;
 }
 
 function addToLibrary(book) {
   myLibrary.push(book);
-  window.localStorage.setItem("library", JSON.stringify(myLibrary));
-  createCard(book.title, book.author, book.pages, book.read);
+  saveLibrary();
+  createCard(book.title, book.author, book.pages, book.read, book.id);
 }
 
 function clearAndLoopThroughLibrary(array) {
@@ -57,15 +60,16 @@ function clearAndLoopThroughLibrary(array) {
 
 function loadLibrary(array) {
   for (let item of array) {
-    createCard(item.title, item.author, item.pages, item.read);
+    createCard(item.title, item.author, item.pages, item.read, item.id);
   }
 }
 
-function createCard(title, author, pages, read) {
+function createCard(title, author, pages, read, id) {
   let bookCardsContainer = document.querySelector('.bookCardsContainer');
 
   let bookCard = document.createElement('div')
   bookCard.classList.add('bookCard');
+  bookCard.dataset.id = `${id}`;
 
   let pTitle = document.createElement('a');
   pTitle.classList.add('bookTitle');
@@ -156,6 +160,8 @@ function markRead() {
 function removeCard() {
   if (confirm("Are you sure you want to remove this book?")) {
     this.parentElement.remove();
+    let bookID = this.parentElement.dataset.id;
+    console.log(bookID);
   } else {
     return;
   }
@@ -193,4 +199,8 @@ formBackground.addEventListener('click', function(e) {
 function closeForm() {
   formBackground.classList.add('hidden');
   resetFormBtn.click();
+}
+
+function saveLibrary() {
+  window.localStorage.setItem("library", JSON.stringify(myLibrary));
 }
