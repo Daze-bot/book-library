@@ -242,11 +242,11 @@ body {
 }
 
 .entry input:hover {
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 8px var(--shadow-color);
 }
 
 .entry input:focus {
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 8px var(--dark-shadow-color);
 }
 
 .check {
