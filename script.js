@@ -13,7 +13,7 @@ let formCloseBtn = document.querySelector('.formClose');
 let formSubmitBtn = document.querySelector('.submitNewBook');
 let searchBar = document.querySelector('#searchbar');
 
-window.addEventListener('load', () => clearAndLoopThroughLibrary(myLibrary));
+window.addEventListener('load', () => loadLibrary(myLibrary));
 darkThemeBtn.addEventListener('click', () => setTheme("dark"));
 lightThemeBtn.addEventListener('click', () => setTheme("light"));
 window.addEventListener('scroll', showToTop);
@@ -22,6 +22,8 @@ newBookBtn.addEventListener('click', showNewBookForm);
 formCloseBtn.addEventListener('click', closeForm);
 formSubmitBtn.addEventListener('click', addNewBook);
 searchBar.addEventListener('keyup', () => filterBySearch(searchBar.value));
+searchBar.addEventListener('focusin', showCancel);
+searchBar.addEventListener('focusout', hideCancel);
 
 function showNewBookForm() {
   formBackground.classList.remove('hidden');
@@ -149,6 +151,14 @@ function createCard(title, author, pages, read, id) {
     closeForm();
 }
 
+function filterBySearch(search) {
+  let filteredLibrary = myLibrary.filter(library => {
+    return (library.title.toUpperCase().includes(search.toUpperCase()) || 
+        library.author.toUpperCase().includes(search.toUpperCase()));
+  })
+  clearAndLoopThroughLibrary(filteredLibrary);
+}
+
 function markRead() {
   let bookID = +this.parentElement.parentElement.dataset.id;
   let index = myLibrary.findIndex(x => x.id === bookID);
@@ -218,10 +228,16 @@ function saveUniqueID() {
   window.localStorage.setItem("uniqueID", uniqueID);
 }
 
-function filterBySearch(search) {
-  let filteredLibrary = myLibrary.filter(library => {
-    return (library.title.toUpperCase().includes(search.toUpperCase()) || 
-        library.author.toUpperCase().includes(search.toUpperCase()));
-  })
-  clearAndLoopThroughLibrary(filteredLibrary);
+function showCancel() {
+  let searchCancel = document.querySelector('.searchCancel');
+  searchCancel.classList.remove('hidden');
+}
+
+function hideCancel() {
+  let searchCancel = document.querySelector('.searchCancel');
+  searchCancel.classList.add('hidden');
+}
+
+function clearSearchBar() {
+  console.log("HI")
 }

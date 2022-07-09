@@ -44,6 +44,7 @@ body {
   align-items: center;
   gap: 10px;
   flex-grow: 1;
+  position: relative;
 }
 
 .search input {
@@ -65,6 +66,19 @@ body {
   outline: none;
   border: 2px solid var(--primary-text-color);
   box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.2);
+}
+
+.search input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+#searchCancel {
+  position: absolute;
+  right: 55px;
+  filter: none;
+  height: 25px;
+  width: 25px;
 }
 
 .search label {
