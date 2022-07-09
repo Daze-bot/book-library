@@ -11,8 +11,9 @@ let newBookForm = document.querySelector('.newBookForm');
 let resetFormBtn = document.querySelector('.resetForm');
 let formCloseBtn = document.querySelector('.formClose');
 let formSubmitBtn = document.querySelector('.submitNewBook');
+let searchBar = document.querySelector('#searchbar');
 
-window.addEventListener('load', () => loadLibrary(myLibrary));
+window.addEventListener('load', () => clearAndLoopThroughLibrary(myLibrary));
 darkThemeBtn.addEventListener('click', () => setTheme("dark"));
 lightThemeBtn.addEventListener('click', () => setTheme("light"));
 window.addEventListener('scroll', showToTop);
@@ -20,6 +21,7 @@ toTopBtn.addEventListener('click', () => {window.scrollTo(0, 0)});
 newBookBtn.addEventListener('click', showNewBookForm);
 formCloseBtn.addEventListener('click', closeForm);
 formSubmitBtn.addEventListener('click', addNewBook);
+searchBar.addEventListener('keyup', () => filterBySearch(searchBar.value));
 
 function showNewBookForm() {
   formBackground.classList.remove('hidden');
@@ -214,4 +216,12 @@ function saveLibrary() {
 
 function saveUniqueID() {
   window.localStorage.setItem("uniqueID", uniqueID);
+}
+
+function filterBySearch(search) {
+  let filteredLibrary = myLibrary.filter(library => {
+    return (library.title.toUpperCase().includes(search.toUpperCase()) || 
+        library.author.toUpperCase().includes(search.toUpperCase()));
+  })
+  clearAndLoopThroughLibrary(filteredLibrary);
 }
