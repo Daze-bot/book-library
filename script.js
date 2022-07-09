@@ -237,7 +237,3 @@ function hideCancel() {
   let searchCancel = document.querySelector('.searchCancel');
   searchCancel.classList.add('hidden');
 }
-
-function clearSearchBar() {
-  console.log("HI")
-}
