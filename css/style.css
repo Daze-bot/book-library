@@ -73,9 +73,17 @@ body {
   appearance: none;
 }
 
-#searchCancel {
+.cancelBox {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   right: 55px;
+  height: 25px;
+  width: 25px;
+}
+
+#searchCancel {
   filter: none;
   height: 25px;
   width: 25px;

@@ -12,6 +12,7 @@ let resetFormBtn = document.querySelector('.resetForm');
 let formCloseBtn = document.querySelector('.formClose');
 let formSubmitBtn = document.querySelector('.submitNewBook');
 let searchBar = document.querySelector('#searchbar');
+let searchCancelBtn = document.querySelector('.cancelBox');
 
 window.addEventListener('load', () => loadLibrary(myLibrary));
 darkThemeBtn.addEventListener('click', () => setTheme("dark"));
@@ -22,6 +23,7 @@ newBookBtn.addEventListener('click', showNewBookForm);
 formCloseBtn.addEventListener('click', closeForm);
 formSubmitBtn.addEventListener('click', addNewBook);
 searchBar.addEventListener('keyup', () => filterBySearch(searchBar.value));
+searchCancelBtn.addEventListener('click', clearSearch);
 searchBar.addEventListener('focusin', showCancel);
 searchBar.addEventListener('focusout', hideCancel);
 
@@ -157,6 +159,13 @@ function filterBySearch(search) {
         library.author.toUpperCase().includes(search.toUpperCase()));
   })
   clearAndLoopThroughLibrary(filteredLibrary);
+  searchBar.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      searchBar.blur();
+    } else {
+      return;
+    }
+  })
 }
 
 function markRead() {
@@ -186,27 +195,6 @@ function removeCard() {
   }
 }
 
-function setTheme(themeName) {
-  themeSelectLink.setAttribute('href', `./css/${themeName}.css`);
-  window.localStorage.setItem("theme", `${themeName}`);
-  if (themeName === "dark") {
-    darkThemeBtn.classList.add('hidden');
-    lightThemeBtn.classList.remove('hidden');
-  } else {
-    lightThemeBtn.classList.add('hidden');
-    darkThemeBtn.classList.remove('hidden');
-  }
-}
-setTheme(currentTheme);
-
-function showToTop() {
-  if (window.scrollY >= 210) {
-    toTopBtn.classList.remove('hidden');
-  } else {
-    toTopBtn.classList.add('hidden');
-  }
-}
-
 formBackground.addEventListener('click', function(e) {
   if (newBookForm.contains(e.target)) {
     return;
@@ -220,14 +208,6 @@ function closeForm() {
   resetFormBtn.click();
 }
 
-function saveLibrary() {
-  window.localStorage.setItem("library", JSON.stringify(myLibrary));
-}
-
-function saveUniqueID() {
-  window.localStorage.setItem("uniqueID", uniqueID);
-}
-
 function showCancel() {
   let searchCancel = document.querySelector('.searchCancel');
   searchCancel.classList.remove('hidden');
@@ -237,3 +217,37 @@ function hideCancel() {
   let searchCancel = document.querySelector('.searchCancel');
   searchCancel.classList.add('hidden');
 }
+
+function clearSearch() {
+  searchBar.value = "";
+  clearAndLoopThroughLibrary(myLibrary);
+}
+
+function saveLibrary() {
+  window.localStorage.setItem("library", JSON.stringify(myLibrary));
+}
+
+function saveUniqueID() {
+  window.localStorage.setItem("uniqueID", uniqueID);
+}
+
+function showToTop() {
+  if (window.scrollY >= 210) {
+    toTopBtn.classList.remove('hidden');
+  } else {
+    toTopBtn.classList.add('hidden');
+  }
+}
+
+function setTheme(themeName) {
+  themeSelectLink.setAttribute('href', `./css/${themeName}.css`);
+  window.localStorage.setItem("theme", `${themeName}`);
+  if (themeName === "dark") {
+    darkThemeBtn.classList.add('hidden');
+    lightThemeBtn.classList.remove('hidden');
+  } else {
+    lightThemeBtn.classList.add('hidden');
+    darkThemeBtn.classList.remove('hidden');
+  }
+}
+setTheme(currentTheme);
