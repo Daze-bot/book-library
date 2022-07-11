@@ -170,6 +170,7 @@ function filterBySearch(search) {
       return;
     }
   })
+  sortBooks();
 }
 
 function sortBooks() {
