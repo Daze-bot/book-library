@@ -13,6 +13,7 @@ let formCloseBtn = document.querySelector('.formClose');
 let formSubmitBtn = document.querySelector('.submitNewBook');
 let searchBar = document.querySelector('#searchbar');
 let searchCancelBtn = document.querySelector('.cancelBox');
+let sortDropdown = document.querySelector('#sortBooks');
 
 window.addEventListener('load', () => loadLibrary(myLibrary));
 darkThemeBtn.addEventListener('click', () => setTheme("dark"));
@@ -26,6 +27,32 @@ searchBar.addEventListener('keyup', () => filterBySearch(searchBar.value));
 searchCancelBtn.addEventListener('click', clearSearch);
 searchBar.addEventListener('focusin', showCancel);
 searchBar.addEventListener('focusout', hideCancel);
+sortDropdown.addEventListener('change', () => sortBooks(sortDropdown.value));
+
+function sortBooks(property) {
+  if (property === "blank") {
+    let sortedLibrary = myLibrary.sort((a, b) => {
+      return (a.id > b.id) ? 1 : -1;
+    })
+    clearAndLoopThroughLibrary(sortedLibrary);
+  } else if (property === "title") {
+    let sortedLibrary = myLibrary.sort((a, b) => {
+      return (a.title.toUpperCase() > b.title.toUpperCase()) ? 1 : -1;
+    })
+    clearAndLoopThroughLibrary(sortedLibrary);
+  } else if (property === "author") {
+    let sortedLibrary = myLibrary.sort((a, b) => {
+      return (a.author.toUpperCase() > b.author.toUpperCase()) ? 1 : -1;
+    })
+    clearAndLoopThroughLibrary(sortedLibrary);
+  } else {
+    let sortedLibrary = myLibrary.sort((a, b) => {
+      return (a.read > b.read) ? -1 : (a.read === b.read) ?
+         ((a.title.toUpperCase() > b.title.toUpperCase()) ? 1 : -1) : 1;
+    })
+    clearAndLoopThroughLibrary(sortedLibrary);
+  }
+}
 
 function showNewBookForm() {
   formBackground.classList.remove('hidden');
