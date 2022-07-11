@@ -187,6 +187,11 @@ function sortBooks(property) {
       return (a.author.toUpperCase() > b.author.toUpperCase()) ? 1 : -1;
     })
     clearAndLoopThroughLibrary(sortedLibrary);
+  } else if (property === "pages") {
+    let sortedLibrary = myLibrary.sort((a, b) => {
+      return (+a.pages > +b.pages) ? 1 : -1;
+    })
+    clearAndLoopThroughLibrary(sortedLibrary);
   } else {
     let sortedLibrary = myLibrary.sort((a, b) => {
       return (a.read > b.read) ? -1 : (a.read === b.read) ?
