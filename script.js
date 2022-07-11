@@ -82,6 +82,7 @@ function addToLibrary(book) {
   saveLibrary();
   saveUniqueID();
   createCard(book.title, book.author, book.pages, book.read, book.id);
+  sortBooks(sortDropdown.value);
 }
 
 function clearAndLoopThroughLibrary(array) {
