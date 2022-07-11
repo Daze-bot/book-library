@@ -15,7 +15,8 @@ let searchBar = document.querySelector('#searchbar');
 let searchCancelBtn = document.querySelector('.cancelBox');
 let sortDropdown = document.querySelector('#sortBooks');
 
-window.addEventListener('load', () => loadLibrary(myLibrary));
+
+window.addEventListener('load', sortBooks);
 darkThemeBtn.addEventListener('click', () => setTheme("dark"));
 lightThemeBtn.addEventListener('click', () => setTheme("light"));
 window.addEventListener('scroll', showToTop);
@@ -27,7 +28,7 @@ searchBar.addEventListener('keyup', () => filterBySearch(searchBar.value));
 searchCancelBtn.addEventListener('click', clearSearch);
 searchBar.addEventListener('focusin', showCancel);
 searchBar.addEventListener('focusout', hideCancel);
-sortDropdown.addEventListener('change', () => sortBooks(sortDropdown.value));
+sortDropdown.addEventListener('change', () => sortBooks());
 
 function showNewBookForm() {
   formBackground.classList.remove('hidden');
@@ -57,7 +58,7 @@ function addToLibrary(book) {
   saveLibrary();
   saveUniqueID();
   createCard(book.title, book.author, book.pages, book.read, book.id);
-  sortBooks(sortDropdown.value);
+  sortBooks();
 }
 
 function clearAndLoopThroughLibrary(array) {
@@ -171,31 +172,45 @@ function filterBySearch(search) {
   })
 }
 
-function sortBooks(property) {
+function sortBooks() {
+  let filteredLibrary = myLibrary.filter(library => {
+    return (library.title.toUpperCase().includes(searchBar.value.toUpperCase()) || 
+        library.author.toUpperCase().includes(searchBar.value.toUpperCase()));
+  })
+  let property = document.querySelector('#sortBooks').value;
   if (property === "blank") {
-    let sortedLibrary = myLibrary.sort((a, b) => {
+    let sortedLibrary = filteredLibrary.sort((a, b) => {
       return (a.id > b.id) ? 1 : -1;
     })
     clearAndLoopThroughLibrary(sortedLibrary);
   } else if (property === "title") {
-    let sortedLibrary = myLibrary.sort((a, b) => {
-      return (a.title.toUpperCase() > b.title.toUpperCase()) ? 1 : -1;
+    let sortedLibrary = filteredLibrary.sort((a, b) => {
+      return (a.title.toUpperCase() > b.title.toUpperCase()) ? 
+          1 : (a.title.toUpperCase() === b.title.toUpperCase()) ?
+          ((a.author.toUpperCase() > b.author.toUpperCase()) ? 1 : -1) : -1;
     })
     clearAndLoopThroughLibrary(sortedLibrary);
   } else if (property === "author") {
-    let sortedLibrary = myLibrary.sort((a, b) => {
-      return (a.author.toUpperCase() > b.author.toUpperCase()) ? 1 : -1;
+    let sortedLibrary = filteredLibrary.sort((a, b) => {
+      return (a.author.toUpperCase() > b.author.toUpperCase()) ? 
+          1 : (a.author.toUpperCase() === b.author.toUpperCase()) ?
+          ((a.title.toUpperCase() > b.title.toUpperCase()) ? 1 : -1) : -1;
     })
     clearAndLoopThroughLibrary(sortedLibrary);
   } else if (property === "pages") {
-    let sortedLibrary = myLibrary.sort((a, b) => {
-      return (+a.pages > +b.pages) ? 1 : -1;
+    let sortedLibrary = filteredLibrary.sort((a, b) => {
+      return (+a.pages > +b.pages) ? 1 : (+a.pages === +b.pages) ?
+          ((a.title.toUpperCase() > b.title.toUpperCase()) ? 
+          1 : (a.title.toUpperCase() === b.title.toUpperCase()) ?
+          ((a.author.toUpperCase() > b.author.toUpperCase()) ? 1 : -1) : -1) : -1;
     })
     clearAndLoopThroughLibrary(sortedLibrary);
   } else {
-    let sortedLibrary = myLibrary.sort((a, b) => {
+    let sortedLibrary = filteredLibrary.sort((a, b) => {
       return (a.read > b.read) ? -1 : (a.read === b.read) ?
-         ((a.title.toUpperCase() > b.title.toUpperCase()) ? 1 : -1) : 1;
+          ((a.title.toUpperCase() > b.title.toUpperCase()) ? 
+          1 : (a.title.toUpperCase() === b.title.toUpperCase()) ?
+          ((a.author.toUpperCase() > b.author.toUpperCase()) ? 1 : -1) : -1) : 1;
     })
     clearAndLoopThroughLibrary(sortedLibrary);
   }
@@ -214,6 +229,7 @@ function markRead() {
     myLibrary[index].read = "false";
   }
   saveLibrary();
+  sortBooks();
 }
 
 function removeCard() {
@@ -253,7 +269,7 @@ function hideCancel() {
 
 function clearSearch() {
   searchBar.value = "";
-  clearAndLoopThroughLibrary(myLibrary);
+  sortBooks();
 }
 
 function saveLibrary() {
