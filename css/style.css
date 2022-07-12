@@ -454,7 +454,7 @@ body {
   display: none;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 900px) {
   body {
     grid-template: 200px 1fr 40px / 1fr;
   }
