@@ -26,8 +26,6 @@ formCloseBtn.addEventListener('click', closeForm);
 formSubmitBtn.addEventListener('click', addNewBook);
 searchBar.addEventListener('keyup', () => filterBySearch(searchBar.value));
 searchCancelBtn.addEventListener('click', clearSearch);
-searchBar.addEventListener('focusin', showCancel);
-searchBar.addEventListener('focusout', hideCancel);
 sortDropdown.addEventListener('change', () => sortBooks());
 
 function showNewBookForm() {
@@ -257,16 +255,6 @@ formBackground.addEventListener('click', function(e) {
 function closeForm() {
   formBackground.classList.add('hidden');
   resetFormBtn.click();
-}
-
-function showCancel() {
-  let searchCancel = document.querySelector('.searchCancel');
-  searchCancel.classList.remove('hidden');
-}
-
-function hideCancel() {
-  let searchCancel = document.querySelector('.searchCancel');
-  searchCancel.classList.add('hidden');
 }
 
 function clearSearch() {
