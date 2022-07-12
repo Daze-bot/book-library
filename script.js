@@ -32,6 +32,7 @@ sortDropdown.addEventListener('change', () => sortBooks());
 
 function showNewBookForm() {
   formBackground.classList.remove('hidden');
+  document.querySelector('#bookTitleInput').focus();
 }
 
 function addNewBook() {
