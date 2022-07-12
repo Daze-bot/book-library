@@ -38,6 +38,8 @@ body {
 }
 
 .search {
+  appearance: none;
+  -webkit-appearance: none;
   padding: 10px 48px;
   display: flex;
   justify-content: start;
