@@ -178,9 +178,9 @@ function sortBooks() {
         library.author.toUpperCase().includes(searchBar.value.toUpperCase()));
   })
   let property = document.querySelector('#sortBooks').value;
-  if (property === "blank") {
+  if (property === "newest") {
     let sortedLibrary = filteredLibrary.sort((a, b) => {
-      return (a.id > b.id) ? 1 : -1;
+      return (a.id > b.id) ? -1 : 1;
     })
     clearAndLoopThroughLibrary(sortedLibrary);
   } else if (property === "title") {
