@@ -199,10 +199,10 @@ function sortBooks() {
     clearAndLoopThroughLibrary(sortedLibrary);
   } else if (property === "pages") {
     let sortedLibrary = filteredLibrary.sort((a, b) => {
-      return (+a.pages > +b.pages) ? 1 : (+a.pages === +b.pages) ?
+      return (+a.pages > +b.pages) ? -1 : (+a.pages === +b.pages) ?
           ((a.title.toUpperCase() > b.title.toUpperCase()) ? 
           1 : (a.title.toUpperCase() === b.title.toUpperCase()) ?
-          ((a.author.toUpperCase() > b.author.toUpperCase()) ? 1 : -1) : -1) : -1;
+          ((a.author.toUpperCase() > b.author.toUpperCase()) ? 1 : -1) : -1) : 1;
     })
     clearAndLoopThroughLibrary(sortedLibrary);
   } else {
